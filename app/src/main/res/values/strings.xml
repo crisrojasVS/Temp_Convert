@@ -5,8 +5,9 @@
         <string name="btn_back">← Volver al Menú</string>
 
         <!-- Bienvenida -->
-        <string name="welcome_title">CONVERSOR TÉRMICO</string>
-        <string name="welcome_subtitle">De frío glacial a calor extremo</string>
+        <string name="welcome_title">CONVERSOR</string>
+        <string name="welcome_subtitle">Convierte Temperatura y Longitudes</string>
+
 
         <!-- Menú -->
         <string name="menu_title">Selecciona un Conversor</string>

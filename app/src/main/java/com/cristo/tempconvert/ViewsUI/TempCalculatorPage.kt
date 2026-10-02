@@ -1,4 +1,4 @@
-package com.cristo.tempconvert.ViewsUi
+package com.cristo.tempconvert.ViewsUI
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,8 +17,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cristo.tempconvert.R
-import com.cristo.tempconvert.ViewsUI.ViewModel
-import com.cristo.tempconvert.ViewsUI.AppScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
@@ -48,7 +46,7 @@ fun TempCalculatorPage(viewModel: ViewModel = viewModel()) {
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = stringResource(id = R.string.welcome_subtitle),
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         color = Color.Gray
                     )
                     Spacer(modifier = Modifier.height(32.dp))
