@@ -1,26 +1,21 @@
 <resources>
-        <!-- General -->
+
         <string name="app_name">TempConvert</string>
         <string name="btn_start">COMENZAR</string>
         <string name="btn_back">← Volver al Menú</string>
 
-        <!-- Bienvenida -->
         <string name="welcome_title">CONVERSOR</string>
         <string name="welcome_subtitle">Convierte Temperatura y Longitudes</string>
 
-
-        <!-- Menú -->
         <string name="menu_title">Selecciona un Conversor</string>
         <string name="menu_btn_temp">Conversor de Temperatura</string>
         <string name="menu_btn_length">Conversor de Longitud</string>
 
-        <!-- Conversor de Temperatura -->
         <string name="conversor_title">CONVERSOR</string>
         <string name="label_celsius">Celsius (°C)</string>
         <string name="label_fahrenheit">Fahrenheit (°F)</string>
         <string name="label_kelvin">Kelvin (K)</string>
 
-        <!-- Conversor de Longitud -->
         <string name="length_conversor_title">CONVERSOR DE LONGITUD</string>
         <string name="label_meters">Metros (m)</string>
         <string name="label_kilometers">Kilómetros (km)</string>
