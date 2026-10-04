@@ -8,21 +8,27 @@ enum class AppScreen {
     WELCOME,
     MENU,
     TEMPERATURE,
-    LENGTH
+    LENGTH,
+    TIME // <-- Añadido
 }
 
 data class AppUiState(
     val currentScreen: AppScreen = AppScreen.WELCOME,
-    // Estados de Temperatura
+    //Temperatura
     val celsius: String = "",
     val fahrenheit: String = "",
     val kelvin: String = "",
-    // Estados de Longitud (Metros, Kilómetros, Centímetros, Pies, Millas)
+    //Longitud (Metros, Kilómetros, Centímetros, Pies, Millas)
     val meters: String = "",
     val kilometers: String = "",
     val centimeters: String = "",
     val feet: String = "",
-    val miles: String = ""
+    val miles: String = "",
+    //Tiempo (Segundos, Minutos, Horas, Días) <-- Añadido
+    val seconds: String = "",
+    val minutes: String = "",
+    val hours: String = "",
+    val days: String = ""
 )
 
 class ViewModel : androidx.lifecycle.ViewModel() {
@@ -38,7 +44,7 @@ class ViewModel : androidx.lifecycle.ViewModel() {
         _uiState.value = _uiState.value.copy(currentScreen = screen)
     }
 
-
+    // --- TEMPERATURA ---
     fun onCelsiusChanged(input: String) {
         val c = input.toDoubleOrNull()
         if (c == null) {
@@ -83,8 +89,8 @@ class ViewModel : androidx.lifecycle.ViewModel() {
             kelvin = input
         )
     }
-    
 
+    // --- LONGITUD ---
     fun onMetersChanged(input: String) {
         val m = input.toDoubleOrNull()
         if (m == null) {
@@ -143,6 +149,58 @@ class ViewModel : androidx.lifecycle.ViewModel() {
     private fun clearLengthFields() {
         _uiState.value = _uiState.value.copy(
             meters = "", kilometers = "", centimeters = "", feet = "", miles = ""
+        )
+    }
+
+    // --- TIEMPO (NUEVO) ---
+    fun onSecondsChanged(input: String) {
+        val s = input.toDoubleOrNull()
+        if (s == null) {
+            clearTimeFields()
+            return
+        }
+        updateTimeValues(s)
+    }
+
+    fun onMinutesChanged(input: String) {
+        val min = input.toDoubleOrNull()
+        if (min == null) {
+            clearTimeFields()
+            return
+        }
+        updateTimeValues(min * 60.0)
+    }
+
+    fun onHoursChanged(input: String) {
+        val h = input.toDoubleOrNull()
+        if (h == null) {
+            clearTimeFields()
+            return
+        }
+        updateTimeValues(h * 3600.0)
+    }
+
+    fun onDaysChanged(input: String) {
+        val d = input.toDoubleOrNull()
+        if (d == null) {
+            clearTimeFields()
+            return
+        }
+        updateTimeValues(d * 86400.0)
+    }
+
+    private fun updateTimeValues(seconds: Double) {
+        _uiState.value = _uiState.value.copy(
+            seconds = String.format("%.2f", seconds),
+            minutes = String.format("%.2f", seconds / 60.0),
+            hours = String.format("%.4f", seconds / 3600.0),
+            days = String.format("%.4f", seconds / 86400.0)
+        )
+    }
+
+    private fun clearTimeFields() {
+        _uiState.value = _uiState.value.copy(
+            seconds = "", minutes = "", hours = "", days = ""
         )
     }
 }

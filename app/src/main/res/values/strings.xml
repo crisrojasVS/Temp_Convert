@@ -5,7 +5,7 @@
         <string name="btn_back">← Volver al Menú</string>
 
         <string name="welcome_title">CONVERSOR</string>
-        <string name="welcome_subtitle">Convierte Temperatura y Longitudes</string>
+        <string name="welcome_subtitle">Convierte Temperatura, Longitud y Tiempo</string>
 
         <string name="menu_title">Selecciona un Conversor</string>
         <string name="menu_btn_temp">Conversor de Temperatura</string>
@@ -22,4 +22,11 @@
         <string name="label_centimeters">Centímetros (cm)</string>
         <string name="label_feet">Pies (ft)</string>
         <string name="label_miles">Millas (mi)</string>
+
+        <string name="menu_btn_time">Conversor de Tiempo</string>
+        <string name="time_conversor_title">CONVERSOR DE TIEMPO</string>
+        <string name="label_seconds">Segundos (s)</string>
+        <string name="label_minutes">Minutos (min)</string>
+        <string name="label_hours">Horas (h)</string>
+        <string name="label_days">Días (d)</string>
 </resources>
