@@ -1,5 +1,7 @@
 package com.cristo.tempconvert.ViewsUI
 
+import android.provider.ContactsContract
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,12 +14,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cristo.tempconvert.R
@@ -36,22 +38,19 @@ fun TempCalculatorPage(viewModel: ViewModel = viewModel()) {
     }
 }
 
+// Apartado de Bienvenida
 @Composable
 fun WelcomeScreen(viewModel: ViewModel) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    listOf(Color(0xFF0F172A), Color(0xFF1E293B), Color(0xFF334155))
-                )
-            )
+            .background(Color(0xFF0F172A))
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
         Card(
             modifier = Modifier.fillMaxWidth().wrapContentHeight(),
-            shape = RoundedCornerShape(28.dp),
+            shape = RoundedCornerShape(13.dp),
             colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B).copy(alpha = 0.9f)),
             elevation = CardDefaults.cardElevation(defaultElevation = 12.dp)
         ) {
@@ -95,11 +94,18 @@ fun WelcomeScreen(viewModel: ViewModel) {
                 ) {
                     Text(text = stringResource(id = R.string.btn_start), fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color.White)
                 }
+                Button(
+                    onClick = {viewModel.setProfile()}
+                ) { Text("Datos") }
+                Profile(nombre = viewModel.uiState.collectAsState().value.name, matricula = viewModel.uiState.collectAsState().value.matricula)
+
+
             }
         }
     }
 }
 
+// Apartado del menu de seleccion
 @Composable
 fun MenuScreen(viewModel: ViewModel) {
     Box(
@@ -178,6 +184,7 @@ fun MenuCard(title: String, icon: ImageVector, accentColor: Color, onClick: () -
     }
 }
 
+// Para regresar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConverterScaffold(
@@ -212,6 +219,7 @@ fun ConverterScaffold(
     }
 }
 
+// Apartado de la temperatura
 @Composable
 fun TemperatureScreen(viewModel: ViewModel, state: AppUiState) {
     ConverterScaffold(
@@ -227,6 +235,7 @@ fun TemperatureScreen(viewModel: ViewModel, state: AppUiState) {
     }
 }
 
+// Apartado de las longitudes
 @Composable
 fun LengthScreen(viewModel: ViewModel, state: AppUiState) {
     ConverterScaffold(
@@ -246,6 +255,7 @@ fun LengthScreen(viewModel: ViewModel, state: AppUiState) {
     }
 }
 
+// Apartado del tiempo
 @Composable
 fun TimeScreen(viewModel: ViewModel, state: AppUiState) {
     ConverterScaffold(
@@ -284,4 +294,28 @@ fun StyledTextField(value: String, onValueChange: (String) -> Unit, label: Strin
             unfocusedContainerColor = Color(0xFF1E293B)
         )
     )
+}
+
+@Composable
+fun Profile (modifier: Modifier = Modifier, nombre: String, matricula: String){
+    Card (
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B).copy(alpha = 0.9f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp)
+    ){
+        Column(
+            modifier = modifier.fillMaxWidth().padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = nombre,
+                fontSize = 20.sp
+            )
+            Text(
+                text = matricula,
+                fontSize = 20.sp
+            )
+        }
+    }
 }

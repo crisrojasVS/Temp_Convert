@@ -4,6 +4,9 @@
         <string name="btn_start">COMENZAR</string>
         <string name="btn_back">← Volver al Menú</string>
 
+        <string name="user_name">Cristopher Rojas Molina</string>
+        <string name="user_matricula">253684</string>
+
         <string name="welcome_title">CONVERSOR</string>
         <string name="welcome_subtitle">Convierte Temperatura, Longitud y Tiempo</string>
 

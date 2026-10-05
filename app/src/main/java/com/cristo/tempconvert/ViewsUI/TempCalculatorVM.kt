@@ -3,6 +3,7 @@ package com.cristo.tempconvert.ViewsUI
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import java.lang.reflect.Modifier
 
 enum class AppScreen {
     WELCOME,
@@ -13,7 +14,11 @@ enum class AppScreen {
 }
 
 data class AppUiState(
+    // Indicador de donde inicia la app (WELCOME)
     val currentScreen: AppScreen = AppScreen.WELCOME,
+
+    var name: String = "",
+    var matricula: String = "",
     //Temperatura
     val celsius: String = "",
     val fahrenheit: String = "",
@@ -42,6 +47,11 @@ class ViewModel : androidx.lifecycle.ViewModel() {
 
     fun navigateTo(screen: AppScreen) {
         _uiState.value = _uiState.value.copy(currentScreen = screen)
+    }
+
+    fun setProfile(){
+        _uiState.value = _uiState.value.copy(name = "Cristopher Rojas Molina")
+        _uiState.value = _uiState.value.copy(matricula = "253684")
     }
 
     // --- TEMPERATURA ---
@@ -152,7 +162,7 @@ class ViewModel : androidx.lifecycle.ViewModel() {
         )
     }
 
-    // --- TIEMPO (NUEVO) ---
+    // TIEMPO
     fun onSecondsChanged(input: String) {
         val s = input.toDoubleOrNull()
         if (s == null) {
